@@ -1,0 +1,24 @@
+{
+    "name": "js-xhr-hook",
+    "version": "0.4",
+    "description": "this is userscript's description",
+    "main": "index.js",
+    "repository": "https://github.com/JSREI/js-xhr-hook",
+    "namespace": "https://github.com/JSREI/js-xhr-hook",
+    "document": "https://github.com/JSREI/js-xhr-hook",
+    "scripts": {
+        "build": "NODE_ENV=production webpack --config webpack.prod.js",
+        "watch": "webpack --watch --config webpack.dev.js"
+    },
+    "author": "CC11001100 <CC11001100@qq.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "current-script-polyfill": "^1.0.0",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4",
+        "webpack-merge": "^5.9.0"
+    },
+    "dependencies": {
+        "pako": "^2.1.0"
+    }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR 请求示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<h1>XHR 请求示例</h1>
+<button id="sendRequest">发送请求</button>
+<div id="response">
+    <p>响应结果将显示在这里。</p>
+</div>
+
+<script>
+    // 获取按钮和响应显示区域的引用
+    var sendButton = document.getElementById('sendRequest');
+    var responseDiv = document.getElementById('response');
+
+    // 为按钮添加点击事件监听器
+    sendButton.addEventListener('click', function() {
+        // 创建一个新的 XMLHttpRequest 对象
+        var xhr = new XMLHttpRequest();
+
+        // 配置请求类型、URL 和是否异步
+        xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1', true);
+
+        // 设置请求完成时的回调函数
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // 请求成功，解析响应数据
+                var response = JSON.parse(xhr.responseText);
+                responseDiv.innerHTML = '<pre>' + JSON.stringify(response, null, 2) + '</pre>';
+            } else {
+                // 请求失败，显示错误信息
+                responseDiv.innerHTML = '请求失败，状态码: ' + xhr.status;
+            }
+        };
+
+        // 设置请求错误时的回调函数
+        xhr.onerror = function() {
+            responseDiv.innerHTML = '请求发生错误，请检查网络连接。';
+        };
+
+        // 发送请求
+        xhr.send();
+    });
+</script>
+</body>
+</html>
