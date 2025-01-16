@@ -36,6 +36,7 @@ class SignAnalyzer {
         name = name.toLowerCase();
         const signNameSet = new Set();
         signNameSet.add("sign");
+        signNameSet.add("_sign");
         signNameSet.add("signature");
         return signNameSet.has(name);
     }

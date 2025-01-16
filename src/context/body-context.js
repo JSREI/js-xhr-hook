@@ -24,6 +24,43 @@ class BodyContext {
         // 如果是json类型的话，则解析json对象放在这里
         this.object = {};
 
+
+        // 会分析一下rawBody是否是url编码了
+        this.isRawBodyUrlEncode = false;
+        // 如果是被url编码的话则会尝试对其进行解码
+        this.rawBodyUrlDecode = null;
+
+        // 会分析一下rawBody是否是使用hex编码了
+        this.isRawBodyHex = false;
+        // 如果是的话，则会尝试解码一下
+        this.rawBodyHexDecode = null;
+
+        // 会分析一下rawBody是否是使用base64编码了
+        this.isRawBodyBase64 = false;
+        // 如果是的话，则会尝试解码一下
+        this.rawBodyBase64Decode = null;
+
+    }
+
+    /**
+     *
+     * @return {null}
+     */
+    getRawBodyPlain() {
+
+        if (this.isRawBodyBase64) {
+            return this.rawBodyBase64Decode;
+        }
+
+        if (this.isRawBodyHex) {
+            return this.rawBodyHexDecode;
+        }
+
+        if (this.isRawBodyUrlEncode) {
+            return this.rawBodyUrlDecode;
+        }
+
+        return this.rawBody;
     }
 
 }

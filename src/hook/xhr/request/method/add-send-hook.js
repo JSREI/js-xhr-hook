@@ -7,6 +7,9 @@ const {ContextLocation} = require("../../../../context/context-location");
 const {SignAnalyzer} = require("../../../../analyzer/encrypt/sign/sign-analyzer");
 const {Base64Analyzer} = require("../../../../analyzer/core-encoding/base64-analyzer/base64-analyzer");
 const {UrlEncodeAnalyzer} = require("../../../../analyzer/core-encoding/url-encode-analyzer/url-encode-analyzer");
+const {HexEncodeAnalyzer} = require("../../../../analyzer/core-encoding/hex-encode-analyzer/hex-encode-analyzer");
+const {TextBodyParser} = require("../../../../parser/text-body-parser");
+const {SendMessage} = require("../../../../message-formatter/request/method/send-message");
 
 /**
  * 为send方法生成代理对象并返回
@@ -52,6 +55,9 @@ function addSendHook(xhrObject, xhrContext) {
                             // - https://passport.fang.com/
                             xhrContext.requestContext.bodyContext = new FormBodyParser().parse(data);
                             // TODO 2025-01-11 11:17:15 断点测试
+                        } else {
+                            // 纯文本的请求
+                            xhrContext.requestContext.bodyContext = new TextBodyParser().parse(data);
                         }
                     } else if (data.prototype === Blob.prototype) {
                         // Blob 类型
@@ -99,6 +105,11 @@ function addSendHook(xhrObject, xhrContext) {
                 console.error(e);
             }
 
+            // 分析请求中的各种编码
+            UrlEncodeAnalyzer.analyzeRequestContext(xhrContext.requestContext);
+            Base64Analyzer.analyzeRequestContext(xhrContext.requestContext);
+            HexEncodeAnalyzer.analyzeRequestContext(xhrContext.requestContext);
+
             // 测试网站：
             // https://liuyan.people.com.cn/home/
             // https://music.91q.com/album/P10004267254
@@ -107,9 +118,8 @@ function addSendHook(xhrObject, xhrContext) {
                 console.log("检测到sign: " + signContext.name + ":" + signContext.value);
             }
 
-            // 分析请求中的base64
-            UrlEncodeAnalyzer.analyzeRequestContext(xhrContext.requestContext);
-            Base64Analyzer.analyzeRequestContext(xhrContext.requestContext);
+            // 在控制台上打印上下文
+            SendMessage.print(xhrContext);
 
             return target.apply(xhrObject, argArray);
         }

@@ -9,6 +9,9 @@ class UrlEncodeCodec {
      * @return {boolean}
      */
     static isEncode(value) {
+        if (!value) {
+            return false;
+        }
         // URL 编码的字符串通常包含 % 符号
         return typeof value === 'string' && /%[0-9A-Fa-f]{2}/.test(value);
     }

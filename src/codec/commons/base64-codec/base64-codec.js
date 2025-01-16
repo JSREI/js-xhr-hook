@@ -10,6 +10,9 @@ class Base64Codec {
      * @return {boolean}
      */
     static isBase64(str) {
+        if (!str) {
+            return false;
+        }
         try {
             // 尝试解码
             const decoded = atob(str); // Base64解码

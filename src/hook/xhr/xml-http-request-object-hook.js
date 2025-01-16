@@ -1,8 +1,4 @@
-const {XhrContextParser} = require("../../parser/xhr-context-parser");
 const {XhrContext} = require("../../context/xhr-context");
-const {Header} = require("../../context/header");
-const {ContextLocation} = require("../../context/context-location");
-const {formatToUrl} = require("../../utils/url-util");
 const {addSendHook} = require("./request/method/add-send-hook");
 const {addVisitResponseHeaderHook} = require("./response/attribute/add-visit-response-header-hook");
 const {addOpenHook} = require("./request/method/add-open-hook");
@@ -109,20 +105,6 @@ class XMLHttpRequestObjectHook {
             }
         });
     }
-
-
-    // -------------------------------------------- --------------------------------------------------------------------
-
-
-    //                         case "onerror":
-    //                         case "onload":
-    //                         case "onloadend":
-    //                         case "onloadstart":
-    //                         case "onprogress":
-    //                         case "ontimeout":
-    //                         case "onreadystatechange":
-    //                             return _this.addOnreadystatechangeHook(value);
-
 
 }
 

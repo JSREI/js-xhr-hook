@@ -18,6 +18,10 @@ function addVisitResponseHeaderHook(xhrObject, xhrContext, propertyName) {
     });
 }
 
+function collectionInformation(xhrObject, xhrContext, propertyName) {
+    
+}
+
 module.exports = {
     addVisitResponseHeaderHook,
 }

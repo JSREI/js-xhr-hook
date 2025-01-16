@@ -1,5 +1,5 @@
 /**
- *
+ * HexCodec 类提供了编码和解码十六进制字符串的工具。
  */
 class HexCodec {
 
@@ -33,6 +33,30 @@ class HexCodec {
         }
 
         return dataView;
+    }
+
+    /**
+     * 检查字符串是否是有效的十六进制字符串。
+     * @param {string} string - 要检查的字符串。
+     * @return {boolean} - 如果字符串是有效的十六进制字符串，则返回 true，否则返回 false。
+     */
+    static isHex(string) {
+
+        if (!string) {
+            return false;
+        }
+
+        // 移除所有空格
+        string = string.replace(/\s/g, '');
+
+        // 检查长度是否为偶数（如果表示字节）
+        if (string.length % 2 !== 0) {
+            return false;
+        }
+
+        // 检查所有字符是否都是有效的十六进制字符
+        const hexRegex = /^[0-9a-fA-F]+$/;
+        return hexRegex.test(string);
     }
 
 }

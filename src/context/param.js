@@ -25,6 +25,11 @@ class Param {
         // 如果是被url编码的话则会尝试对其进行解码
         this.valueUrlDecode = null;
 
+        // 会分析一下value是否是使用hex编码了
+        this.isValueHex = false;
+        // 如果是的话，则会尝试解码一下
+        this.valueHexDecode = null;
+
         // 会分析一下value是否是使用base64编码了
         this.isValueBase64 = false;
         // 如果是的话，则会尝试解码一下
@@ -40,6 +45,10 @@ class Param {
 
         if (this.isValueBase64) {
             return this.valueBase64Decode;
+        }
+
+        if (this.isValueHex) {
+            return this.valueHexDecode;
         }
 
         if (this.isValueUrlEncode) {

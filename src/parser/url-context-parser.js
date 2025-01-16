@@ -16,6 +16,11 @@ class UrlContextParser {
     parse(url) {
         const urlContext = new UrlContext();
 
+        // 有可能是非法的空的字符串，比如响应失败之类的
+        if (!url) {
+            return urlContext;
+        }
+
         // 使用URL类解析URL
         const parsedUrl = new URL(url);
 

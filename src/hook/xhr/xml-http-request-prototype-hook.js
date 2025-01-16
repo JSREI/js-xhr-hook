@@ -8,15 +8,15 @@ const {getUnsafeWindow} = require("../../utils/scope-util");
 class XMLHttpRequestPrototypeHook {
 
     addHook() {
-        let XMLHttpRequestHolder = ancestorXMLHttpRequestHolder;
+        let xMLHttpRequestHolder = ancestorXMLHttpRequestHolder;
         let cachedProxyXHR = null;
         Object.defineProperty(getUnsafeWindow(), "XMLHttpRequest", {
             get: () => {
                 if (!cachedProxyXHR) {
-                    cachedProxyXHR = new Proxy(XMLHttpRequestHolder, {
+                    cachedProxyXHR = new Proxy(xMLHttpRequestHolder, {
                         // new XMLHttpRequest()的时候给替换掉返回的对象
                         construct(target, argArray, newTarget) {
-                            const xhrObject = new XMLHttpRequestHolder();
+                            const xhrObject = new xMLHttpRequestHolder();
                             return new XMLHttpRequestObjectHook(xhrObject).addHook();
                         },
                         // get(target, p, receiver) {
@@ -34,7 +34,7 @@ class XMLHttpRequestPrototypeHook {
                 // 缓存失效
                 cachedProxyXHR = null;
                 // 设置为新的值，可能会存在多层嵌套的情况
-                XMLHttpRequestHolder = newValue;
+                xMLHttpRequestHolder = newValue;
             },
             configurable: true,
         });
