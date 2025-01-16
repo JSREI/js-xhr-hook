@@ -21,7 +21,8 @@ class HeaderParser {
             'Accept-Ranges', 'Age', 'Allow', 'Content-Encoding', 'Content-Language',
             'Content-Location', 'Content-Disposition', 'Content-Range', 'ETag',
             'Expires', 'Last-Modified', 'Location', 'Proxy-Authenticate', 'Retry-After',
-            'Server', 'Set-Cookie', 'Trailer', 'Transfer-Encoding', 'Vary', 'WWW-Authenticate'
+            'Server', 'Set-Cookie', 'Trailer', 'Transfer-Encoding', 'Vary', 'WWW-Authenticate',
+            'X-Requested-With'
         ];
 
         // 将头字段转换为小写并去除前后空格
