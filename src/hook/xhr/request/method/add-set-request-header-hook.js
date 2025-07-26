@@ -2,6 +2,7 @@ const {Header} = require("../../../../context/header");
 const {ContextLocation} = require("../../../../context/context-location");
 const {HeaderParser} = require("../../../../parser/header-parser");
 const {DebuggerTester} = require("../../../../debuggers/debugger-tester");
+const {getUserCodeLocation} = require("../../../../utils/code-util");
 
 
 /**
@@ -54,7 +55,8 @@ function collectInformation(xhrObject, xhrContext, argArray) {
         // https://liuyan.people.com.cn/threads/list?fid=5050&formName=%E5%A4%96%E4%BA%A4%E9%83%A8%E9%83%A8%E9%95%BF%E7%8E%8B%E6%AF%85&position=1
         // TODO 2025-01-10 23:35:24 断点测试
         if (header.isCustom) {
-            console.log("设置了自定义请求头： " + header.name + ":" + header.value);
+            const userCodeLocation = getUserCodeLocation();
+            console.log("设置了自定义请求头： " + header.name + ":" + header.value + "，代码位置："+ userCodeLocation);
         }
 
     } catch (e) {

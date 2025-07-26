@@ -20,7 +20,6 @@ function addOnreadystatechangeHook(xhrObject, xhrContext, callbackFunction) {
     return xhrObject.onreadystatechange = () => {
 
         try {
-            const [event] = arguments;
             xhrContext.requestContext.readyState = xhrObject.readyState;
             if (xhrContext.requestContext.isRequestDone()) {
                 const responseContext = xhrContext.responseContext = new ResponseContextParser().parse(xhrObject, xhrContext);

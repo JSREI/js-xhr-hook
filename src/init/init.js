@@ -1,5 +1,5 @@
 const {XMLHttpRequestPrototypeHook} = require("../hook/xhr/xml-http-request-prototype-hook");
-const {registerMenu} = require("../config/ui/menu");
+const {registerMenu, checkAndShowConfiguration} = require("../config/ui/menu");
 
 
 /**
@@ -8,6 +8,9 @@ const {registerMenu} = require("../config/ui/menu");
 function init() {
 
     registerMenu();
+
+    // 检查是否需要显示配置窗口
+    checkAndShowConfiguration();
 
     new XMLHttpRequestPrototypeHook().addHook();
 

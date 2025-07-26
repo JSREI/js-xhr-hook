@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR Monitor Configuration Test</title>
+</head>
+<body>
+    <h1>XHR Monitor Configuration Test</h1>
+    <p>This page is for testing the configuration window.</p>
+    
+    <div style="margin: 20px 0;">
+        <h2>Test Instructions:</h2>
+        <ol>
+            <li>Install the userscript in your browser</li>
+            <li>Navigate to: <code>https://github.com/JSREI/js-xhr-hook?configuration=true</code></li>
+            <li>The configuration window should automatically open</li>
+            <li>Or use the userscript menu to open configuration</li>
+        </ol>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h2>Expected Features:</h2>
+        <ul>
+            <li>Beautiful modern UI with gradient background</li>
+            <li>Toggle switches for enable/disable options</li>
+            <li>Input fields for configuration values</li>
+            <li>Save, Reset, and Close buttons</li>
+            <li>Configuration persistence using GM_setValue/GM_getValue</li>
+            <li>Success/error notifications</li>
+        </ul>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h2>Configuration Options:</h2>
+        <ul>
+            <li><strong>Monitor Settings:</strong> Enable monitoring, logging, breakpoints</li>
+            <li><strong>Filter Settings:</strong> URL patterns, HTTP methods</li>
+            <li><strong>Display Settings:</strong> Max requests, timestamps</li>
+        </ul>
+    </div>
+    
+    <script>
+        // Simple test script to make some XHR requests
+        function makeTestRequest() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
+            xhr.onload = function() {
+                console.log('Test XHR request completed:', xhr.responseText);
+            };
+            xhr.send();
+        }
+        
+        // Make a test request every 5 seconds
+        setInterval(makeTestRequest, 5000);
+        
+        console.log('Test page loaded. XHR requests will be made every 5 seconds.');
+    </script>
+</body>
+</html>

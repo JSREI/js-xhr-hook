@@ -115,7 +115,7 @@ function addSendHook(xhrObject, xhrContext) {
             // https://music.91q.com/album/P10004267254
             const signContext = new SignAnalyzer().analyze(xhrContext);
             if (signContext) {
-                console.log("检测到sign: " + signContext.name + ":" + signContext.value);
+                console.log("检测到sign: " + signContext.name + ":" + signContext.value + ", url = " + xhrContext.requestContext.urlContext.rawUrl);
             }
 
             // 在控制台上打印上下文

@@ -1,3 +1,7 @@
 const {init} = require("./init/init");
 
-init();
+// 初始化
+(async () => {
+    init();
+})();
+
